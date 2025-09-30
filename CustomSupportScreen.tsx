@@ -18,6 +18,7 @@ interface CustomSupportScreenProps {
   organizationId: string;
   agentId: string;
   signedUserData?: string | null;
+  currentScreen?: string; // Current screen/page name
   onClose: () => void;
 }
 
@@ -25,9 +26,17 @@ export default function CustomSupportScreen({
   organizationId,
   agentId,
   signedUserData,
+  currentScreen = 'Unknown',
   onClose,
 }: CustomSupportScreenProps) {
   const [showChat, setShowChat] = useState(false);
+  const [chatOpenedFrom, setChatOpenedFrom] = useState<string>('Support Landing');
+
+  // Helper to open chat and track where it was opened from
+  const openChat = (source: string) => {
+    setChatOpenedFrom(source);
+    setShowChat(true);
+  };
 
   if (showChat) {
     // Show the full chat interface
@@ -46,6 +55,13 @@ export default function CustomSupportScreen({
           organizationId={organizationId}
           agentId={agentId}
           signedUserData={signedUserData}
+          unsignedUserData={{
+            currentScreen: currentScreen,
+            chatOpenedFrom: chatOpenedFrom,
+            openedAt: new Date().toISOString(),
+            platform: 'react-native',
+          }}
+          tags={['mobile-app']}
         />
       </SafeAreaView>
     );
@@ -76,7 +92,7 @@ export default function CustomSupportScreen({
           
           <TouchableOpacity
             style={styles.actionCard}
-            onPress={() => setShowChat(true)}
+            onPress={() => openChat('Quick Action: Chat with Support')}
           >
             <View style={styles.actionIcon}>
               <Text style={styles.actionIconText}>💬</Text>
@@ -123,21 +139,21 @@ export default function CustomSupportScreen({
           
           <TouchableOpacity
             style={styles.faqCard}
-            onPress={() => setShowChat(true)}
+            onPress={() => openChat('FAQ: How do I reset my password?')}
           >
             <Text style={styles.faqQuestion}>How do I reset my password?</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.faqCard}
-            onPress={() => setShowChat(true)}
+            onPress={() => openChat('FAQ: Where is my order?')}
           >
             <Text style={styles.faqQuestion}>Where is my order?</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.faqCard}
-            onPress={() => setShowChat(true)}
+            onPress={() => openChat('FAQ: How do I update my account?')}
           >
             <Text style={styles.faqQuestion}>How do I update my account?</Text>
           </TouchableOpacity>
@@ -147,7 +163,7 @@ export default function CustomSupportScreen({
       {/* Floating Chat Button */}
       <TouchableOpacity
         style={styles.floatingButton}
-        onPress={() => setShowChat(true)}
+        onPress={() => openChat('Floating Button: Chat Now')}
       >
         <Text style={styles.floatingButtonText}>💬 Chat Now</Text>
       </TouchableOpacity>

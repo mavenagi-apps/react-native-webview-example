@@ -20,7 +20,6 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import MavenChatWebView from './MavenChatWebView';
 import CustomSupportScreen from './CustomSupportScreen';
 import { MAVEN_CONFIG } from './maven-config';
 
@@ -33,11 +32,15 @@ import { MAVEN_CONFIG } from './maven-config';
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState('Home');
 
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent onOpenChat={() => setIsChatOpen(true)} />
+      <AppContent 
+        onOpenChat={() => setIsChatOpen(true)}
+        onScreenChange={setCurrentScreen}
+      />
       <Modal
         visible={isChatOpen}
         animationType="slide"
@@ -48,6 +51,7 @@ function App() {
           organizationId={MAVEN_CONFIG.organizationId}
           agentId={MAVEN_CONFIG.agentId}
           signedUserData={MAVEN_CONFIG.signedUserData}
+          currentScreen={currentScreen}
           onClose={() => setIsChatOpen(false)}
         />
       </Modal>
@@ -55,8 +59,19 @@ function App() {
   );
 }
 
-function AppContent({ onOpenChat }: { onOpenChat: () => void }) {
+function AppContent({ 
+  onOpenChat, 
+  onScreenChange 
+}: { 
+  onOpenChat: () => void;
+  onScreenChange: (screen: string) => void;
+}) {
   const safeAreaInsets = useSafeAreaInsets();
+
+  // Update screen name when component mounts
+  React.useEffect(() => {
+    onScreenChange('Home');
+  }, [onScreenChange]);
 
   return (
     <View style={styles.container}>

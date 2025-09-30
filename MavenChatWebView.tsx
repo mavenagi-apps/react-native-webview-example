@@ -16,7 +16,7 @@ interface MavenChatWebViewProps {
   organizationId: string;
   agentId: string;
   signedUserData?: string | null; // JWT token from your backend
-  unsignedUserData?: Record<string, any> | null; // Optional additional context
+  unsignedUserData?: Record<string, any> | null; // Optional context metadata
   tags?: string[]; // Optional conversation tags
 }
 
