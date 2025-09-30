@@ -2,6 +2,8 @@
 
 This is an example React Native application which demonstrates how to integrate [Maven AGI Chat](https://www.mavenagi.com) into iOS and Android mobile apps using react-native-webview and how to pass configuration data such as signedUserData, unsignedUserData, and tags from the end user's mobile app interaction into the Maven AGI Platform.
 
+![Maven Chat in React Native](img/iphone-emulator.png)
+
 ## Overview
 
 This implementation the official Maven chat widget (`widget.js`) loaded via inline html into a WebView component, so is actually very similar to the documented installation steps for configuring Chat on your website.

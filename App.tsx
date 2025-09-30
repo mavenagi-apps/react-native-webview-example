@@ -75,11 +75,11 @@ function AppContent({
 
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>Welcome to BarryTestMobileApp</Text>
-        <Text style={styles.subtitle}>
-          React Native with Maven AGI Chat Integration
-        </Text>
+          <View style={styles.content}>
+            <Text style={styles.title}>Welcome to React Native WebView Example</Text>
+            <Text style={styles.subtitle}>
+              React Native with Maven AGI Chat Integration
+            </Text>
         
         <View style={styles.buttonContainer}>
           <Button
@@ -87,19 +87,6 @@ function AppContent({
             onPress={onOpenChat}
             color="#6C2BD9"
           />
-        </View>
-        
-        <View style={styles.instructions}>
-          <Text style={styles.instructionText}>
-            🎯 Demo Mode Active{'\n\n'}
-            Currently using demo credentials (anonymous chat).{'\n\n'}
-            To enable authentication:{'\n'}
-            1. Generate ES256 keypair & encryption secret{'\n'}
-            2. Configure Maven Chat app with keys{'\n'}
-            3. Implement backend JWT endpoint{'\n'}
-            4. Update App.tsx to fetch JWT{'\n\n'}
-            See MOBILE_SETUP_GUIDE.md for details
-          </Text>
         </View>
       </View>
     </View>

@@ -51,7 +51,7 @@ export default function MavenChatWebView({
           height: 100%; 
           width: 100%;
           overflow: hidden; 
-          background: #fff;
+          background: #f5f5f5;
         }
       </style>
     </head>
