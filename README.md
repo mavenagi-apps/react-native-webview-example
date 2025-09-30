@@ -1,20 +1,14 @@
 # Maven AGI Chat - React Native WebView Example
 
-Example React Native application demonstrating how to integrate [Maven AGI Chat](https://www.mavenagi.com) into iOS and Android mobile apps using WebView with authenticated users.
+Example React Native application demonstrating how to integrate [Maven AGI Chat](https://www.mavenagi.com) into iOS and Android mobile apps using react-native-webview and how to pass configuration data such as signedUserData, unsignedUserData, and customData.
 
 ## Overview
 
 This implementation uses the official Maven chat widget (`widget.js`) loaded within a WebView, following Maven's documented authentication flow for signed user data via JWT tokens.
 
-### Features
 
-- ✅ **Authenticated user chat** - JWT-based authentication with ES256 signing + A128CBC-HS256 encryption
-- ✅ **Custom support UI** - Branded support screen with Maven chat integration  
-- ✅ **Auto-opening chat** - Seamless user experience without preview pages
-- ✅ **Automated tooling** - One-command key generation and token management
-- ✅ **Production-ready** - Security best practices with environment variables
-
-## Quick Start
+## Running Locally
+It's possible to run this sample app standalone locally in an iOS or android emulator if you would like to play around with it in a lightweight environment prior to integrating any code into your production mobile application(s).
 
 ### 1. Install Dependencies
 
@@ -26,7 +20,7 @@ yarn install
 
 ### 2. Generate Keys & Configure
 
-Run the automated setup script to generate all required cryptographic keys:
+There is a command line utility tool included which generates the public/private key pair, along with the encryption secret necessary to setup secure user authentication and data persistence across Maven. You can reRun the automated setup script to generate all required cryptographic keys:
 
 ```bash
 node setup-maven-keys.js
